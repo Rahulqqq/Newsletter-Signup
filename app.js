@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
 const https = require("https");
+const { rawListeners } = require("process");
 
 const app = express();
 
@@ -36,18 +37,32 @@ app.post("/", function(req, res){
     const url = "https://us21.api.mailchimp.com/3.0/lists/cb9e9e46fc";   // you have to replace  X to us after the word of us ("us21") available in api key , Mailchimp has several servers that they're running simultaneously beacuse they're big operations
     
     const options = {
-        Method: "POST",
-        auth:"rahulqqq"
+        method: "POST",
+        auth:"rahul1:f9fb4b24bbc9845190c26b8d46cfb964-us21"    //do not use spacebar
 
     }
 
-    https.request(url, options, function(response){
+    const request = https.request(url, options, function(response){
+
+       if (response.statusCode === 200){
+        res.sendFile(__dirname + "/success.html");
+       }else{
+        res.sendFile(__dirname + "/failure.html")
+       }
+    
+        response.on("data", function(data){
+            console.log(JSON.parse(data));
+        })
 
     })
+    request.write(jsonData);
+    request.end();
 });
 
 
-
+app.post("/failure", function(req, res){
+    res.redirect("/")
+})
 
 
 
@@ -58,7 +73,7 @@ app.listen(3000, function(){
 
 
 // API KEY:
-// eed09f62faad37bc3662012abb0e66b3-us21
+// f9fb4b24bbc9845190c26b8d46cfb964-us21
 
 // Audience Id
 // cb9e9e46fc
