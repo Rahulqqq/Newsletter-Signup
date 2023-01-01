@@ -6,6 +6,8 @@ const { rawListeners } = require("process");
 
 const app = express();
 
+
+// Express body-parser is an npm module used to process data sent in an HTTP request body. 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
