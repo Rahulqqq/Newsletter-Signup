@@ -36,11 +36,11 @@ app.post("/", function(req, res){
     };
     let jsonData = JSON.stringify(data);
 
-    const url = "https://us21.api.mailchimp.com/3.0/lists/cb9e9e46fc";   // you have to replace  X to us after the word of us ("us21") available in api key , Mailchimp has several servers that they're running simultaneously beacuse they're big operations
+    const url = "https://us21.api.mailchimp.com/3.0/lists/Your AudienceID";   // you have to replace  X to us after the word of us ("us21") available in api key , Mailchimp has several servers that they're running simultaneously beacuse they're big operations
     
     const options = {
         method: "POST",
-        auth:"rahul1:f9fb4b24bbc9845190c26b8d46cfb964-us21"    //do not use spacebar
+        auth:"rahul1:Your API ID"    //do not use spacebar
 
     }
 
@@ -74,8 +74,3 @@ app.listen(3000, function(){
 });
 
 
-// API KEY:
-// f9fb4b24bbc9845190c26b8d46cfb964-us21
-
-// Audience Id
-// cb9e9e46fc
